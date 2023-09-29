@@ -50,6 +50,7 @@ namespace Saga.Functions.Services
             {
                 log.LogError(ex.Message);
             }
+            // This is a comment
         }
     }
 }
