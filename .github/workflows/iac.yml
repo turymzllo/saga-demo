@@ -6,6 +6,8 @@ on:
     paths:
       - iac/*
 
+  workflow_dispatch:
+
 jobs:
   terraform:
     name: 'Terraform'
