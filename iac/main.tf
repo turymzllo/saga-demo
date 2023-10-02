@@ -23,7 +23,7 @@ resource "azurerm_eventhub_namespace_authorization_rule" "sagalogic-namespace-au
   name                = "${var.prefix}-nsauth-rule"
   namespace_name      = azurerm_eventhub_namespace.sagalogic-namespace.name
   resource_group_name = azurerm_resource_group.sagalogic-resource-group.name
-  id                  = azurerm_eventhub_namespace.sagalogic-namespace.id
+  id                  = 1
 
   listen = true
   send   = true
