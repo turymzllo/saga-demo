@@ -39,8 +39,6 @@ resource "azurerm_eventhub" "sagalogic-eventhub" {
   message_retention = 1
 }
 
-
-
 resource "azurerm_eventhub_consumer_group" "sagalogic-eventhub-cons-grp" {
   for_each            = toset(var.eventhub)
   name                = var.ehcg
