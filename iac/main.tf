@@ -75,12 +75,13 @@ resource "azurerm_app_service_plan" "sagalogic-app-service-plan" {
 }
 
 resource "azurerm_function_app" "sagalogic-function" {
-  name                      = "${var.prefix}-${var.azure_function_app}"
-  resource_group_name       = azurerm_resource_group.sagalogic-resource-group.name
-  location                  = azurerm_resource_group.sagalogic-resource-group.location
-  app_service_plan_id       = azurerm_app_service_plan.sagalogic-app-service-plan.id
-  storage_connection_string = azurerm_storage_account.sagalogic-storage-account.primary_connection_string
-  version                   = "~3"
+  name                       = "${var.prefix}-${var.azure_function_app}"
+  resource_group_name        = azurerm_resource_group.sagalogic-resource-group.name
+  location                   = azurerm_resource_group.sagalogic-resource-group.location
+  app_service_plan_id        = azurerm_app_service_plan.sagalogic-app-service-plan.id
+  storage_account_name       = azurerm_storage_account.sagalogic-storage-account.name
+  storage_account_access_key = azurerm_storage_account.sagalogic-storage-account.primary_access_key
+  version                    = "~3"
 
   app_settings = {
     "CosmosDbConnectionString"           = "AccountEndpoint=${azurerm_cosmosdb_account.sagalogic-db-account.endpoint};AccountKey=${azurerm_cosmosdb_account.sagalogic-db-account.primary_master_key};",
@@ -148,7 +149,6 @@ resource "azurerm_cosmosdb_account" "sagalogic-db-account" {
   }
 
   geo_location {
-    prefix            = "${var.prefix}-cosmos-db-${random_integer.sagalogic-ri.result}-customid"
     location          = azurerm_resource_group.sagalogic-resource-group.location
     failover_priority = 0
   }
