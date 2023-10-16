@@ -6,7 +6,3 @@ provider "azurerm" {
 
   features {}
 }
-
-provider "random" {
-  version = "~> 2.2"
-}
